@@ -78,7 +78,7 @@ class neuralNetwork():
 
                     yNetwork = self.forwardPass[xTraining[currentIndex]]
                     yExpected = yTraining[currentIndex]
-                    self.backPropagation(trainingData, yExpected)
+                    self.backPropagation(xTraining[currentIndex], yNetwork, yExpected)
                 
                     trainingCost += self.costFunction(yNetwork, yExpected)
 
@@ -91,9 +91,9 @@ class neuralNetwork():
                 validationCost = self.validate(validationData)
                 print("Training Cost: ", trainingCost, "Validation Cost: ", validationCost)
 
-    def backPropagation(self, yNetwork, yExpected):
+    def backPropagation(self, x, yNetwork, yExpected):
         """
-        This method should take the output of the network (yNetwork) and
+        This method should take the input data (x), the output of the network (yNetwork) and
         the expected value of y (yExpected). These values should then be
         used in conjunction with the cost function, layer weights, activation 
         function, and previously calculated deltas, to determine the gradient at
