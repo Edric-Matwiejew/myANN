@@ -57,32 +57,39 @@ class neuralNetwork():
         return cost/nSamples
 
     def train(self, trainingData, validationData, batchSize, epochs, learningRate):
-
+        
+        # An 'epoch' is a complete pass through the training set.
+        
         xTraining = trainingData[0]
         yTraining = trainingData[1]
 
         nBatches = len(xTraining)//batchSize
 
         for epoch in range(epochs + 1):
-
+            
+            epochComplete = False
             currentIndex = 0
-            trainingCost = 0
 
-            for i in range(batchSize):
-
-                yNetwork = self.forwardPass[xTraining[currentIndex]]
-                yExpected = yTraining[currentIndex]
-                self.backPropagation(trainingData, yExpected)
+            while not epochComplete:
                 
-                trainingCost += self.costFunction(yNetwork, yExpected)
+                trainingCost = 0
+                
+                for i in range(batchSize):
 
-                currentIndex += 1
-                if currentIndex == len(xTraining):
-                    currentIndex = 0
+                    yNetwork = self.forwardPass[xTraining[currentIndex]]
+                    yExpected = yTraining[currentIndex]
+                    self.backPropagation(trainingData, yExpected)
+                
+                    trainingCost += self.costFunction(yNetwork, yExpected)
 
-            trainingCost /= batchSize
-            validationCost = self.validate(validationData)
-            print("Training Cost: ", trainingCost, "Validation Cost: ", validationCost)
+                    currentIndex += 1
+                    if currentIndex == len(xTraining):
+                        epochComplete = True
+                        break
+
+                trainingCost /= batchSize
+                validationCost = self.validate(validationData)
+                print("Training Cost: ", trainingCost, "Validation Cost: ", validationCost)
 
     def backPropagation(self, yNetwork, yExpected):
         """
