@@ -137,8 +137,8 @@ totalSamples = 100
 xs = np.empty((totalSamples, 10, 1))
 ys = np.empty((totalSamples, 2, 1))
 
-trainingData = [xs[:80,:,:], ys[80:,:,:]]
-validationData = [xs[:80,:,:], ys[80:,:,:]]
+trainingData = [xs[:80,:,:], ys[:80,:,:]]
+validationData = [xs[80:,:,:], ys[80:,:,:]]
 
 # dense1 and dense1 define the layers for an ANN with an input, hidden and output layer.
 # The first argument gives the input size, the second argument is the number of neurons
