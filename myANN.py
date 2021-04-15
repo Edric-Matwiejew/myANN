@@ -83,20 +83,30 @@ class neuralNetwork():
 
             trainingCost /= batchSize
             validationCost = self.validate(validationData)
-            print(trainingCost, validationCost)
+            print("Training Cost: ", trainingCost, "Validation Cost: ", validationCost)
 
     def backPropagation(self, trainingData, yExpected):
+        # Check how "trainingData" and "yExpected" are used elsewhere in the code.
+ 
+
+def identity(z, derivative = false):
+# An example activation function, it can be passed to the "Dense" class and then 
+# called with "derivative = True" durring backpropagation.
+    if derivative:
+        return np.ones(len(z))
+    else:
+        return z
 
 totalSamples = 100
 
-xs = np.empty((totalSamples, 1, 1))
-ys = np.empty((totalSamples, 1, 1))
+xs = np.empty((totalSamples, 10, 1))
+ys = np.empty((totalSamples, 10, 1))
 
-trainingData = [xs[:80,:,:], ys[:80,:,:]]
-validationData = [xs[:80,:,:], ys[:80,:,:]]
+trainingData = [xs[:80,:,:], ys[80:,:,:]]
+validationData = [xs[:80,:,:], ys[80:,:,:]]
 
-dense1 = DenseLayer(1, 2, none)
-dense2 = DenseLayer(2 1, none)
+dense1 = DenseLayer(1, 2, identity)
+dense2 = DenseLayer(2 1, identiy)
 
 layers = [dense1, dense2]
 
@@ -104,5 +114,5 @@ batchSize = 5
 epochs = 10
 learningRate = 1e-4
 
-myNetwork = neuralNetwork(layers, costFunction)
+myNetwork = neuralNetwork(layers)
 myNetwork.train(trainingData, validationData, batchSize, epochs, learningRate)
