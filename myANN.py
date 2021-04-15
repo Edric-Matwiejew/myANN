@@ -87,7 +87,7 @@ class neuralNetwork():
                         epochComplete = True
                         break
 
-                trainingCost /= batchSize
+                trainingCost /= i + 1
                 validationCost = self.validate(validationData)
                 print("Training Cost: ", trainingCost, "Validation Cost: ", validationCost)
 
