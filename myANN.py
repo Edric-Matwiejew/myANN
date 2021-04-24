@@ -75,18 +75,22 @@ class neuralNetwork():
         nBatch = 0
 
         indexes = np.arange(len(xTraining))
-        np.random.shuffle(indexes)
 
         for epoch in range(epochs + 1):
             
             epochComplete = False
             currentIndex = 0
-            dataIndex = indexes[currentIndex]
+            
+            #Uncomment the line below to shuffle your data with each epoch.
+            #np.random.shuffle(indexes)
+            
             while not epochComplete:
                 
                 trainingCost = 0
                 
                 for i in range(batchSize):
+                    
+                    dataIndex = indexes[currentIndex]
 
                     yNetwork = self.forwardPass(xTraining[dataIndex])
                     yExpected = yTraining[dataIndex]
