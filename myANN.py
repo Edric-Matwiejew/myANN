@@ -198,7 +198,7 @@ ys = ys/np.max(ys)
 trainingData = [xs[:80,:,:], ys[:80,:,:]]
 validationData = [xs[80:,:,:], ys[80:,:,:]]
 
-# dense1 and dense1 define the layers for an ANN with an input, hidden and output layer.
+# dense1 to dense4 define the layers for an ANN with an input, 3 hidden layers and output layer.
 # The first argument gives the input size, the second argument is the number of neurons
 # in the layer and the final argument is the activation function assigned to that layer.
 # There is no layer object for the input layer as it is equal to the input data.
