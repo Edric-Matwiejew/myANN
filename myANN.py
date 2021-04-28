@@ -142,11 +142,11 @@ class neuralNetwork():
         Over a training batch of "batchSize" samples, the gradient and delta 
         results for each layer "n" should be summed to:
         
-            self.layer[n].weightsGradient 
+            self.layer[n].weightsGradient[:,:] 
         
         and
             
-            self.layer[n].deltaSum
+            self.layer[n].deltaSum[:]
             
         so when these arrays are devided by "batchSize" in self.updateTheta
         the weights and biases are updated based on the average gradient values 
